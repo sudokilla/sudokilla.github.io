@@ -1,0 +1,8 @@
+# robots.txt for meteorrejects.net
+
+User-agent: *
+Allow: /
+Allow: /favicon.png
+
+# Sitemap location
+Sitemap: https://meteorrejects.net/sitemap.xml

